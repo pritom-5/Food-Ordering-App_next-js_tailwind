@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartSubmitForm from "../form/CartSubmitForm";
 import ItemsContext from "../store/ItemsContext";
 import SuccessModal from "../ui/SuccessModal";
@@ -12,6 +12,13 @@ export default function CartItems() {
   const [showSuccess, setShowSuccess] = useState(null);
 
   const [animateParent] = useAutoAnimate();
+
+  // automatically close success modal after 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => setShowSuccess(false), 5000);
+
+    return () => clearInterval(interval);
+  }, [showSuccess]);
 
   // items
   const itemsList = itemsCtx.itemsInfo.items;
@@ -74,7 +81,7 @@ export default function CartItems() {
           <div id="items-list" ref={animateParent}>
             {itemsList.map((item, index) => (
               // cartItem.jsx
-              <CartItem item={item} index={index} />
+              <CartItem key={item.id} item={item} index={index} />
               //
             ))}
           </div>

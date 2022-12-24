@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+// const nextConfig
+module.exports = {
   images: {
     domains: ["images.unsplash.com"],
   },
   env: {
     USERNAME: "sakibShadman",
-    PASSWORD: "Tp2ruk7quDU4EHsi",
+    PASSWORD: "tBeBHaYcB8lG7fkd",
     CLASTER: "atlascluster",
     DB: "foodDb",
   },
 };
 
-module.exports = nextConfig;
+// module.exports = nextConfig;

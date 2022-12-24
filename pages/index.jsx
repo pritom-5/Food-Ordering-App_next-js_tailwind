@@ -13,9 +13,10 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://sakibShadman:sakibShadman@atlascluster.cfh3m9j.mongodb.net/foodDb?retryWrites=true&w=majority"
-  );
+  const URL_string = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLASTER}.cfh3m9j.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`;
+
+  const client = await MongoClient.connect(URL_string);
+
   const db = client.db();
 
   const col = db.collection("foodCollection");
